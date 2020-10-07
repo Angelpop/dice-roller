@@ -1,56 +1,58 @@
-// console.log("idk what im doing")
+let maxRollsInput =document.querySelector('#max-rolls');
+let rollButton = document.querySelector('#roll-submit');
+let resultsContainer= document.querySelector('#results-container');
+let sum = document.querySelector('#totalRoll')
+let resetButton = document.querySelector('#reset-button')
+let resultsButton = document.querySelector('#roll-results')
+let dieRollsArray = [];
 
-// let numrolls = document.querySelector ("submitButton");
-// let userinput = document.querySelector ("numinput");
-// let totroll = document.querySelector (".totroll");
 
-// let Roll = rollbutton
+function rollRandomNumber() {
+    return Math.floor(Math.random() * 6) +1;
+}
+ 
 
-let maxrollsInput =document.querySelector('numinput');
-let rollButton = document.querySelector('submitButton')
 
-console.log(maxrollsInput.value)
-
-let rollsArray = []
-let maxRolls =6;
-
-let count = 0;
-
-submitButton.addEventListener("click", function() {
-    console.log("thankyou Chris")
-
+rollButton.addEventListener("click", function() {
+    let maxRolls =maxRollsInput.value;
+    let count = 0;
+    // dieRollsArray = []
+    if (sum > 0) {
+        dieRollsArray = [];
+        console.log(sum)
+    }
+    
+console.log(maxRolls);
+    
+    while (count < maxRolls) {
+        //run this
+        dieRollsArray.push(rollRandomNumber())
+        count ++;
+    }
+    console.log(dieRollsArray)
+    sum = dieRollsArray.reduce(function (a, b){
+        return a + b;
+    }, 0)
+    console.log(sum)
+    document.querySelector("#totalRoll").innerHTML = sum
 })
 
+resultsButton.addEventListener("click", function() {
+    let count =0;
+    resultsContainer.innerHTML= "";
 
-
-
-
-
-    while (count <= 6) {
-        //run this
-        console.log(count);
+    while (count < dieRollsArray.length) {
+        resultsContainer.innerHTML += '<li>The roll: ' + (count + 1) + ' landed on: ' + dieRollsArray[count] + '</li>'
         count ++
-    }
-
-
-    showall. //and now nothing works again {}
-
-
-//     while (count < userinput) {
-//         //IDK//
         
-//         if (count <= userinput) {
-//             ///THEN IDK WHAT TO EVEN WRITE // ------>
-//         }
-//         count ++
-//     }
+    }
+})
 
+resetButton.addEventListener("click", function() {
+    document.getElementById("max-rolls").value = ''
+    document.getElementById('results-container').innerHTML = ''
+    document.getElementById('totalRoll').innerHTML = '_'
+    dieRollsArray= []
 
-// Roll.addEventListener("click"), function (){
     
-// }
-
-// let Dice1 =[1, 2, 3, 4, 5, 6]
-// let Dice2 =[1, 2, 3, 4, 5, 6]
-
-// //I DON'T UNDERSTAND ANY OF THIS ANYMORE :,( ///////////cheese...
+})
